@@ -399,18 +399,21 @@
       </div>
       <div class="row2">
         <label>Email<input name="email" type="email" required autocomplete="email"></label>
+        <label>Mobile number<input name="mobile" type="tel" required autocomplete="tel" inputmode="tel" placeholder="+971 50 123 4567" pattern="[+0-9 ()-]{7,20}" title="Enter a phone number, e.g. +971 50 123 4567"></label>
+      </div>
+      <div class="row2">
         <label>I'm a…
           <select name="type">
             <option>SME</option><option>Corporate</option><option>Bank or fintech</option>
             <option>Family office / HNWI</option><option>Retailer</option><option>Other</option>
           </select>
         </label>
+        <label>Interested in<select name="interest" id="interest"></select></label>
       </div>
-      <label>Interested in<select name="interest" id="interest"></select></label>
       <label>What would you like to fix?<textarea name="message" placeholder="e.g. Quoting takes us 3 days and lives in one person's inbox"></textarea></label>
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
       <button class="btn btn-primary" type="submit" id="form-btn">Send enquiry</button>
-      <p class="note" id="form-status" role="status">We will reply to the email address you give.</p>
+      <p class="note" id="form-status" role="status">We will reply by email or call you on the number you give.</p>
     </form>
   </div>
 </section>
@@ -593,7 +596,7 @@ document.getElementById("contact-form").addEventListener("submit", async e => {
   const subject = `Enquiry: ${f.get("interest")} (${f.get("company") || f.get("name")})`;
   const status = document.getElementById("form-status"), btn = document.getElementById("form-btn");
   if (!FORMSPREE_ID) {
-    const body = `Name: ${f.get("name")}\nCompany: ${f.get("company")}\nEmail: ${f.get("email")}\nType: ${f.get("type")}\nInterested in: ${f.get("interest")}\n\n${f.get("message")}`;
+    const body = `Name: ${f.get("name")}\nCompany: ${f.get("company")}\nEmail: ${f.get("email")}\nMobile: ${f.get("mobile")}\nType: ${f.get("type")}\nInterested in: ${f.get("interest")}\n\n${f.get("message")}`;
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     return;
   }
