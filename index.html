@@ -408,8 +408,9 @@
       </div>
       <label>Interested in<select name="interest" id="interest"></select></label>
       <label>What would you like to fix?<textarea name="message" placeholder="e.g. Quoting takes us 3 days and lives in one person's inbox"></textarea></label>
-      <button class="btn btn-primary" type="submit">Send enquiry</button>
-      <p class="note">This opens your email app with the message ready to send.</p>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <button class="btn btn-primary" type="submit" id="form-btn">Send enquiry</button>
+      <p class="note" id="form-status" role="status">We will reply to the email address you give.</p>
     </form>
   </div>
 </section>
@@ -426,6 +427,7 @@
 <script>
 // ---------- CONTENT (edit here) ----------
 const CONTACT_EMAIL = "abdalhaseebzuae@gmail.com";
+const FORMSPREE_ID = "xeaevorb"; // e.g. "xyzabcd" from https://formspree.io/f/xyzabcd. Empty = fall back to opening the visitor's email app
 
 const AUD = { sme: "SMEs", corp: "Corporates", fi: "Banks & fintechs", fo: "Family offices & HNWIs", retail: "Retailers" };
 
@@ -585,12 +587,30 @@ document.querySelectorAll(".aud").forEach(b => b.addEventListener("click", () =>
 
 document.querySelectorAll("#menu a").forEach(a => a.addEventListener("click", () => document.getElementById("menu").classList.remove("open")));
 
-document.getElementById("contact-form").addEventListener("submit", e => {
+document.getElementById("contact-form").addEventListener("submit", async e => {
   e.preventDefault();
-  const f = new FormData(e.target);
+  const form = e.target, f = new FormData(form);
   const subject = `Enquiry: ${f.get("interest")} (${f.get("company") || f.get("name")})`;
-  const body = `Name: ${f.get("name")}\nCompany: ${f.get("company")}\nEmail: ${f.get("email")}\nType: ${f.get("type")}\nInterested in: ${f.get("interest")}\n\n${f.get("message")}`;
-  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const status = document.getElementById("form-status"), btn = document.getElementById("form-btn");
+  if (!FORMSPREE_ID) {
+    const body = `Name: ${f.get("name")}\nCompany: ${f.get("company")}\nEmail: ${f.get("email")}\nType: ${f.get("type")}\nInterested in: ${f.get("interest")}\n\n${f.get("message")}`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return;
+  }
+  f.append("_subject", subject);
+  btn.disabled = true; btn.textContent = "Sending…";
+  try {
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, { method: "POST", body: f, headers: { Accept: "application/json" } });
+    if (!res.ok) throw new Error(res.status);
+    form.reset();
+    status.textContent = "Thanks, your enquiry has been sent. We'll be in touch soon.";
+    status.style.color = "var(--teal)";
+  } catch {
+    status.innerHTML = `Sorry, that didn't go through. Please email us at <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`;
+    status.style.color = "#b42318";
+  } finally {
+    btn.disabled = false; btn.textContent = "Send enquiry";
+  }
 });
 
 document.getElementById("yr").textContent = new Date().getFullYear();
