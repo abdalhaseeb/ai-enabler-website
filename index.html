@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Enabler — AI workflows for UAE businesses</title>
+<meta name="description" content="AI Enabler helps UAE SMEs, banks, family offices and retailers put AI to work in real workflows: quote-to-cash, payables, collections, e-invoicing, bank reconciliation and more, with a human approving everything that goes out.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d1b2a;
+    --ink-2: #33475b;
+    --muted: #5d6f82;
+    --line: #dde4ec;
+    --bg: #ffffff;
+    --bg-soft: #f4f7fa;
+    --navy: #0b2340;
+    --teal: #0f8b8d;
+    --teal-soft: #e3f4f4;
+    --gold: #e0a43a;
+    --gold-soft: #fbf1de;
+    --radius: 14px;
+    --shadow: 0 1px 2px rgba(13,27,42,.06), 0 8px 24px rgba(13,27,42,.06);
+    --max: 1160px;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 Inter, system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: "Space Grotesk", Inter, sans-serif; line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.01em; }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+  h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); }
+  h3 { font-size: 1.15rem; }
+  p { margin: 0 0 1em; }
+  a { color: var(--teal); }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+  section { padding: 88px 0; }
+  .eyebrow { font: 600 .78rem/1 Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+  .lead { font-size: 1.15rem; color: var(--ink-2); max-width: 680px; }
+  .section-head { margin-bottom: 40px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px;
+    font-weight: 600; text-decoration: none; border: 1.5px solid transparent; cursor: pointer; font-size: .98rem;
+    transition: transform .15s, background .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--teal); color: #fff; box-shadow: 0 6px 18px rgba(15,139,141,.28); }
+  .btn-primary:hover { background: #0c7779; }
+  .btn-ghost { border-color: rgba(255,255,255,.35); color: #fff; }
+  .btn-ghost:hover { background: rgba(255,255,255,.08); }
+
+  /* Nav */
+  header.nav {
+    position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.92);
+    backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+  .logo { display: flex; align-items: center; gap: 10px; font: 700 1.2rem "Space Grotesk", sans-serif; color: var(--navy); text-decoration: none; }
+  .logo-mark { width: 30px; height: 30px; border-radius: 8px; background: linear-gradient(135deg, var(--teal), var(--navy)); display: grid; place-items: center; color: #fff; font-size: .8rem; }
+  .nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  .nav ul a { color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: .95rem; }
+  .nav ul a:hover { color: var(--teal); }
+  .nav .btn { padding: 9px 18px; font-size: .9rem; }
+  .menu-btn { display: none; background: none; border: 0; font-size: 1.5rem; cursor: pointer; color: var(--navy); }
+
+  /* Hero */
+  .hero { background: radial-gradient(1200px 500px at 85% -10%, #1a4a6e 0%, transparent 60%), var(--navy); color: #fff; padding: 96px 0 104px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+  .hero .eyebrow { color: #7fd6d7; }
+  .hero p.lead { color: #c8d6e5; }
+  .hero h1 em { font-style: normal; color: #7fd6d7; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+  .flow-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 26px; }
+  .flow-card h4 { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: #9fb4ca; margin-bottom: 18px; font-family: Inter, sans-serif; }
+  .flow { list-style: none; margin: 0; padding: 0; }
+  .flow li { display: flex; align-items: center; gap: 14px; padding: 10px 0; position: relative; }
+  .flow li:not(:last-child)::after { content: ""; position: absolute; left: 15px; top: 40px; bottom: -10px; width: 2px; background: rgba(127,214,215,.3); }
+  .flow .dot { width: 32px; height: 32px; border-radius: 50%; flex: none; display: grid; place-items: center; background: rgba(127,214,215,.16); color: #7fd6d7; font-size: .8rem; font-weight: 700; }
+  .flow .tag { margin-left: auto; font-size: .72rem; padding: 3px 9px; border-radius: 999px; background: rgba(224,164,58,.18); color: #f3c472; white-space: nowrap; }
+  .flow .tag.ai { background: rgba(127,214,215,.16); color: #7fd6d7; }
+
+  /* Principles */
+  .principles { background: var(--bg-soft); padding: 40px 0; border-bottom: 1px solid var(--line); }
+  .principles .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .principle { display: flex; gap: 12px; align-items: flex-start; }
+  .principle .ic { width: 38px; height: 38px; flex: none; border-radius: 10px; background: var(--teal-soft); color: var(--teal); display: grid; place-items: center; }
+  .principle b { display: block; font-size: .96rem; }
+  .principle span { font-size: .88rem; color: var(--muted); line-height: 1.45; display: block; margin-top: 2px; }
+
+  /* Suite */
+  .suite { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; }
+  .suite-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .suite-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; background: #fff; box-shadow: var(--shadow); }
+  .suite-card .num { font: 700 .8rem "Space Grotesk"; color: var(--teal); }
+  .suite-card p { color: var(--muted); font-size: .92rem; margin: 0; }
+  .pill { display: inline-block; padding: 5px 12px; border-radius: 999px; background: var(--gold-soft); color: #8a5a0a; font-weight: 600; font-size: .82rem; margin-bottom: 18px; }
+
+  /* Products */
+  #products { background: var(--bg-soft); }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+  .chip { border: 1px solid var(--line); background: #fff; color: var(--ink-2); padding: 8px 15px; border-radius: 999px; font: 500 .9rem Inter, sans-serif; cursor: pointer; transition: all .15s; }
+  .chip:hover { border-color: var(--teal); color: var(--teal); }
+  .chip[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .cat-block { margin-bottom: 44px; }
+  .cat-block[hidden] { display: none; }
+  .cat-title { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .cat-title .letter { font: 700 .85rem "Space Grotesk"; color: #fff; background: var(--teal); border-radius: 6px; padding: 2px 8px; }
+  .cat-desc { color: var(--muted); margin-bottom: 18px; max-width: 760px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; transition: box-shadow .2s, border-color .2s; }
+  .card:hover { box-shadow: var(--shadow); border-color: #c7d3df; }
+  .card h3 { margin-bottom: 8px; }
+  .card p { color: var(--ink-2); font-size: .94rem; margin-bottom: 12px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+  .tag-sm { font-size: .74rem; padding: 3px 9px; border-radius: 999px; background: var(--bg-soft); color: var(--muted); border: 1px solid var(--line); }
+  .tag-sm.hot { background: var(--gold-soft); border-color: #f0d9a8; color: #8a5a0a; }
+  details.steps { margin: 4px 0 14px; }
+  details.steps summary { cursor: pointer; color: var(--teal); font-weight: 600; font-size: .88rem; list-style: none; }
+  details.steps summary::-webkit-details-marker { display: none; }
+  details.steps summary::before { content: "+ "; }
+  details.steps[open] summary::before { content: "− "; }
+  details.steps ol { margin: 10px 0 0; padding-left: 20px; color: var(--ink-2); font-size: .9rem; }
+  details.steps li { margin-bottom: 3px; }
+
+  /* Services */
+  .svc-groups { display: grid; gap: 40px; }
+  .svc-group h3.group { font-size: 1.35rem; margin-bottom: 4px; }
+  .svc-group > p { color: var(--muted); margin-bottom: 18px; }
+  .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .svc { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; background: #fff; }
+  .svc p { color: var(--ink-2); font-size: .94rem; margin: 0; }
+  .svc ul { margin: 10px 0 0; padding-left: 18px; color: var(--ink-2); font-size: .9rem; }
+  .svc ul li { margin-bottom: 4px; }
+  .svc.feature { border-color: var(--teal); background: linear-gradient(180deg, var(--teal-soft), #fff 60%); }
+
+  /* Process */
+  #process { background: var(--navy); color: #fff; }
+  #process .eyebrow { color: #7fd6d7; }
+  #process .lead { color: #c8d6e5; }
+  .steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: s; }
+  .step { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 24px; position: relative; }
+  .step .n { font: 700 2rem "Space Grotesk"; color: #7fd6d7; opacity: .9; }
+  .step h3 { color: #fff; }
+  .step p { color: #c8d6e5; font-size: .93rem; margin: 0; }
+  .step .when { display: inline-block; font-size: .76rem; color: #f3c472; margin-bottom: 8px; }
+
+  /* Audiences */
+  .aud-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .aud { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 20px; cursor: pointer; text-align: left; background: #fff; font: inherit; color: inherit; transition: all .15s; }
+  .aud:hover { border-color: var(--teal); box-shadow: var(--shadow); }
+  .aud .ic { font-size: 1.6rem; margin-bottom: 8px; }
+  .aud b { display: block; font-family: "Space Grotesk"; font-size: 1.05rem; margin-bottom: 4px; }
+  .aud span { color: var(--muted); font-size: .88rem; line-height: 1.45; display: block; }
+  .aud .go { color: var(--teal); font-weight: 600; font-size: .85rem; margin-top: 10px; display: block; }
+
+  /* Callout */
+  .callout { background: linear-gradient(135deg, var(--gold-soft), #fff); border: 1px solid #f0d9a8; border-radius: 20px; padding: 40px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: center; }
+  .callout h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+  .callout ul { margin: 0; padding-left: 18px; color: var(--ink-2); }
+
+  /* FAQ */
+  #faq { background: var(--bg-soft); }
+  .faq { max-width: 820px; }
+  .faq details { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; margin-bottom: 10px; }
+  .faq summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--teal); font-size: 1.3rem; line-height: 1; }
+  .faq details[open] summary::after { content: "−"; }
+  .faq details p { margin: 12px 0 0; color: var(--ink-2); }
+
+  /* Contact */
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  form { display: grid; gap: 14px; }
+  label { font-weight: 600; font-size: .88rem; display: grid; gap: 6px; }
+  input, select, textarea { font: inherit; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: transparent; }
+  textarea { min-height: 120px; resize: vertical; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .note { font-size: .85rem; color: var(--muted); }
+
+  footer { background: var(--navy); color: #9fb4ca; padding: 40px 0; font-size: .9rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  footer a { color: #c8d6e5; text-decoration: none; }
+
+  @media (max-width: 980px) {
+    .hero-grid, .suite, .callout, .contact { grid-template-columns: 1fr; }
+    .principles .grid { grid-template-columns: 1fr 1fr; }
+    .steps-row { grid-template-columns: 1fr 1fr; }
+    .aud-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 760px) {
+    section { padding: 64px 0; }
+    .nav ul { display: none; position: absolute; top: 66px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; border-bottom: 1px solid var(--line); }
+    .nav ul.open { display: flex; }
+    .nav ul li a { display: block; padding: 14px 20px; }
+    .menu-btn { display: block; }
+    .nav .btn { display: none; }
+    .principles .grid, .steps-row, .aud-grid, .suite-cards, .row2 { grid-template-columns: 1fr; }
+    .cards, .svc-grid { grid-template-columns: 1fr; }
+    .callout { padding: 26px; }
+    .hero { padding: 64px 0 72px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="logo"><span class="logo-mark">AI</span>AI Enabler</a>
+    <nav>
+      <ul id="menu">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">How we work</a></li>
+        <li><a href="#who">Who we help</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="btn btn-primary">Book a discovery call</a>
+    <button class="menu-btn" aria-label="Open menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">AI adoption for UAE businesses</div>
+      <h1>Put AI to work in your <em>real workflows</em>, not just in a chat window.</h1>
+      <p class="lead">We help SMEs, banks, family offices and retailers adopt AI where it saves time: quotes, invoices, payments, reconciliation, onboarding and reporting. We build on the systems you already use, and a person on your team approves everything before it goes out.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Start with a 1-week assessment →</a>
+        <a href="#products" class="btn btn-ghost">Browse our workflow packs</a>
+      </div>
+    </div>
+    <div class="flow-card" aria-label="Example: Quote-to-Cash workflow">
+      <h4>Example: Quote-to-Cash, automated</h4>
+      <ul class="flow">
+        <li><span class="dot">1</span>Client RFQ arrives by email<span class="tag ai">AI reads it</span></li>
+        <li><span class="dot">2</span>Supplier quotes requested and compared<span class="tag ai">AI extracts</span></li>
+        <li><span class="dot">3</span>Proposal drafted for the client<span class="tag">You approve</span></li>
+        <li><span class="dot">4</span>PO in, supplier PO out, delivery tracked<span class="tag ai">Automated</span></li>
+        <li><span class="dot">5</span>Invoice issued and payment collected<span class="tag">You approve</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<div class="principles">
+  <div class="wrap grid">
+    <div class="principle"><div class="ic">✓</div><div><b>A human approves</b><span>Nothing goes to a client, supplier or bank without your sign-off.</span></div></div>
+    <div class="principle"><div class="ic">⛁</div><div><b>Your systems, not ours</b><span>Built on Zoho, Tally or your ERP as the single source of truth.</span></div></div>
+    <div class="principle"><div class="ic">⇄</div><div><b>Your bank moves the money</b><span>We prepare payments and files. We never hold or route funds.</span></div></div>
+    <div class="principle"><div class="ic">AE</div><div><b>Made for the UAE</b><span>E-invoicing, WPS, VAT, corporate tax, PDPL, Arabic and English.</span></div></div>
+  </div>
+</div>
+
+<!-- FLAGSHIP SUITE -->
+<section id="suite">
+  <div class="wrap suite">
+    <div>
+      <div class="eyebrow">Flagship offer</div>
+      <span class="pill">Live in about 30 days</span>
+      <h2>The Back-office Suite for UAE trading SMEs</h2>
+      <p class="lead">Most trading businesses run quoting, purchasing and collections out of a shared inbox and a spreadsheet. We put a proper system of record in place, then add AI to the steps that are slow and manual. The result is quotes out in hours instead of days, and cash in sooner.</p>
+      <p class="note">Built for IT, electrical, MEP and equipment traders with 5–50 staff who use Zoho Books or Tally.</p>
+      <a href="#contact" class="btn btn-primary" style="margin-top:8px">Talk to us about the suite</a>
+    </div>
+    <div class="suite-cards">
+      <div class="suite-card"><div class="num">01</div><h3>Quote-to-Cash</h3><p>RFQ to proposal to PO to invoice to cash, with AI reading RFQs and supplier quotes.</p></div>
+      <div class="suite-card"><div class="num">02</div><h3>Procure-to-Pay</h3><p>Supplier invoices captured from email, matched against PO and delivery, routed for approval.</p></div>
+      <div class="suite-card"><div class="num">03</div><h3>Collections</h3><p>Reminders drafted for email and WhatsApp, promises to pay tracked, overdue accounts escalated.</p></div>
+      <div class="suite-card"><div class="num">04</div><h3>E-invoicing ready</h3><p>Move to structured e-invoices through an accredited service provider, ahead of the UAE mandate.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Products</div>
+      <h2>Ready-made AI workflow packs</h2>
+      <p class="lead">Each pack is a tested workflow we've already built, so you aren't paying for a custom project from scratch. Each one connects your system of record, automation and AI, and your team reviews anything before it goes out.</p>
+    </div>
+    <div class="filters" id="filters" role="toolbar" aria-label="Filter products"></div>
+    <div id="catalog"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Services</div>
+      <h2>Advice, delivery and ongoing support</h2>
+      <p class="lead">From a first assessment to running your finance operations each month, our people deliver the work and stay with you after go-live.</p>
+    </div>
+    <div class="svc-groups" id="svc-groups"></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">How we work</div>
+      <h2>Small, fixed-price steps. A clear go or no-go at each one.</h2>
+      <p class="lead">You can see results before you commit to the next phase, and you can stop after any phase.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step"><div class="n">0</div><span class="when">1 week · credited against the build</span><h3>Discovery</h3><p>We map how the work really flows today, find the quick wins and give you a written roadmap.</p></div>
+      <div class="step"><div class="n">1</div><span class="when">3–4 weeks</span><h3>Backbone</h3><p>We set up the system of record and the core automation. This phase needs no AI, and it fixes most of the manual work.</p></div>
+      <div class="step"><div class="n">2</div><span class="when">3–4 weeks</span><h3>AI layer</h3><p>We add AI for reading, extracting and drafting, and test it against your real documents before it goes live.</p></div>
+      <div class="step"><div class="n">3</div><span class="when">Monthly</span><h3>Managed AI Ops</h3><p>Monitoring, accuracy checks, prompt updates and new small workflows as your business changes.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE HELP -->
+<section id="who">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Who we help</div>
+      <h2>Built for SMEs first, and for more than SMEs</h2>
+      <p class="lead">Choose your type of organisation to see the products that fit.</p>
+    </div>
+    <div class="aud-grid">
+      <button class="aud" data-aud="sme"><div class="ic">🏢</div><b>SMEs</b><span>Trading, services and distribution businesses running on email and spreadsheets.</span><span class="go">See products →</span></button>
+      <button class="aud" data-aud="corp"><div class="ic">🏙️</div><b>Corporates</b><span>Training, governance and AI leadership for teams starting out.</span><span class="go">See products →</span></button>
+      <button class="aud" data-aud="fi"><div class="ic">🏦</div><b>Banks & fintechs</b><span>KYC, CLM, credit, complaints, open finance and delivery support.</span><span class="go">See products →</span></button>
+      <button class="aud" data-aud="fo"><div class="ic">🗂️</div><b>Family offices & HNWIs</b><span>Consolidated reporting, admin and private AI setups.</span><span class="go">See products →</span></button>
+      <button class="aud" data-aud="retail"><div class="ic">🛍️</div><b>Retailers</b><span>Catalogue content, stock forecasting and customer feedback.</span><span class="go">See products →</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- E-INVOICING CALLOUT -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="callout">
+      <div>
+        <div class="eyebrow" style="color:#8a5a0a">UAE e-invoicing</div>
+        <h2>E-invoicing is becoming mandatory. Use the change to fix the whole back office.</h2>
+        <p>Under the UAE's e-invoicing programme, invoices move to a structured digital format sent through an accredited service provider, and PDF invoices will no longer count. We get you ready to comply and use the same project to speed up quoting and collections.</p>
+        <p class="note">Rollout dates depend on business size and are set by the Federal Tax Authority. We confirm the dates that apply to you during discovery.</p>
+      </div>
+      <ul>
+        <li>Readiness check of your current invoicing</li>
+        <li>Accredited service provider selection and onboarding</li>
+        <li>Clean customer and product master data</li>
+        <li>Connection from your accounting system</li>
+        <li>An easy next step to the Quote-to-Cash and Collections packs</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">FAQ</div>
+      <h2>Common questions</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Will AI send emails, quotes or payments without us checking?</summary><p>No. Every pack has a review step. AI reads, extracts and drafts, and someone on your team approves anything that goes to a client, supplier or bank. Where the AI isn't confident, it flags the item for review and leaves it unsent.</p></details>
+      <details><summary>Do you handle our money?</summary><p>Never. We prepare payment runs, WPS salary files and bank files, and connect your systems to your bank. You or your bank release the payments through your own approval process. Where open finance access needs a licence, we work with licensed providers.</p></details>
+      <details><summary>What systems do you work with?</summary><p>Mainly Zoho (Books, CRM, Inventory, One) and Tally, plus other ERPs and CRMs. We connect them using automation tools such as n8n and leading AI models. If you don't have a proper system yet, setting one up is part of the work.</p></details>
+      <details><summary>Is the AI accurate enough for invoices and prices?</summary><p>Before go-live, we test every AI step against a set of your real, hand-checked documents and agree accuracy targets with you. The AI never makes up prices or part numbers. Totals are calculated by the system, not by the AI.</p></details>
+      <details><summary>What about data privacy?</summary><p>We design around the UAE Personal Data Protection Law, sign an NDA before discovery, give you a written note on how your data is handled, and keep access to the minimum each workflow needs.</p></details>
+      <details><summary>How much does it cost?</summary><p>Discovery is a fixed fee that is credited against the build. Each pack is quoted at a fixed price after discovery. Ongoing support is a monthly retainer. Software licences are billed to you directly with no markup.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap contact">
+    <div>
+      <div class="eyebrow">Get started</div>
+      <h2>Book a discovery conversation</h2>
+      <p class="lead">Tell us where the manual work is. Within one call, we'll tell you whether AI is the right answer, or whether a better system would solve it.</p>
+      <p class="note">Based in the UAE. We work in English and Arabic.</p>
+    </div>
+    <form id="contact-form">
+      <div class="row2">
+        <label>Name<input name="name" required autocomplete="name"></label>
+        <label>Company<input name="company" autocomplete="organization"></label>
+      </div>
+      <div class="row2">
+        <label>Email<input name="email" type="email" required autocomplete="email"></label>
+        <label>I'm a…
+          <select name="type">
+            <option>SME</option><option>Corporate</option><option>Bank or fintech</option>
+            <option>Family office / HNWI</option><option>Retailer</option><option>Other</option>
+          </select>
+        </label>
+      </div>
+      <label>Interested in<select name="interest" id="interest"></select></label>
+      <label>What would you like to fix?<textarea name="message" placeholder="e.g. Quoting takes us 3 days and lives in one person's inbox"></textarea></label>
+      <button class="btn btn-primary" type="submit">Send enquiry</button>
+      <p class="note">This opens your email app with the message ready to send.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b style="color:#fff">AI Enabler</b> · AI adoption and workflow automation · UAE</div>
+    <div><a href="#products">Products</a> · <a href="#services">Services</a> · <a href="#contact">Contact</a> · © <span id="yr"></span></div>
+  </div>
+</footer>
+
+<script>
+// ---------- CONTENT (edit here) ----------
+const CONTACT_EMAIL = "hello@example.com"; // TODO: replace with the real business email
+
+const AUD = { sme: "SMEs", corp: "Corporates", fi: "Banks & fintechs", fo: "Family offices & HNWIs", retail: "Retailers" };
+
+const CATEGORIES = [
+  { id: "A", name: "Back-office for trading SMEs", desc: "Our core packs. They cover the order, purchase and cash cycle that most UAE trading businesses still run manually.", items: [
+    { t: "Quote-to-Cash", d: "From client RFQ to cash in the bank, with AI reading RFQs and supplier quotes and drafting proposals.", aud: ["sme"], hot: "Flagship",
+      steps: ["Receive and parse the client RFQ", "Request quotes from suppliers", "Compare supplier quotes side by side", "Draft the client proposal", "Receive the client PO and issue the supplier PO", "Track delivery", "Invoice and collect"] },
+    { t: "Procure-to-Pay / Accounts Payable", d: "Supplier invoices captured from email, matched and approved before they're scheduled for payment.", aud: ["sme", "corp"],
+      steps: ["Capture supplier invoices from email", "3-way match: PO, goods received, invoice", "Route for approval", "Build the payment schedule"] },
+    { t: "Collections & Receivables", d: "Get paid faster with ageing-based reminders over email and WhatsApp.", aud: ["sme", "retail"],
+      steps: ["Ageing report", "AI-drafted reminders by email and WhatsApp", "Promise-to-pay tracking", "Escalation for overdue accounts"] },
+    { t: "UAE E-invoicing Readiness", d: "Move to structured e-invoices (Peppol PINT-AE) through an accredited service provider.", aud: ["sme", "corp", "retail"], hot: "Mandatory" },
+    { t: "Inbox Triage", d: "Incoming emails sorted into RFQs, POs, invoices and complaints, with the key data extracted and sent to the right person.", aud: ["sme", "corp"] },
+    { t: "Tender / RFP Response Assistant", d: "Read government and semi-government tenders, build a compliance matrix and draft responses from your past bids.", aud: ["sme", "corp"] },
+    { t: "Management Reporting", d: "A monthly management pack (P&L, cash, receivables and payables, top customers) from Zoho Books or Tally, with written commentary.", aud: ["sme", "fo"] },
+  ]},
+  { id: "B", name: "Customer-facing", desc: "Respond faster to customers and leads, in Arabic and English.", items: [
+    { t: "WhatsApp & Web Customer Agent", d: "Answers order-status questions, FAQs and quote requests in Arabic and English, and hands over to a person when needed.", aud: ["sme", "retail", "corp"] },
+    { t: "Lead Capture & Follow-up", d: "Qualifies inbound leads, logs them in your CRM, drafts follow-ups and reminds you about stalled deals.", aud: ["sme", "corp"] },
+  ]},
+  { id: "C", name: "Internal knowledge & people", desc: "Make it easy for staff to find policies, prices and contract terms.", items: [
+    { t: "Company Knowledge Assistant", d: "Q&A over your policies, SOPs, product catalogues and price lists.", aud: ["sme", "corp", "fi"] },
+    { t: "HR Pack", d: "Screens CVs against the job description, drafts offer and onboarding documents and answers policy questions.", aud: ["sme", "corp"] },
+    { t: "Contract Tracker (CLM-lite)", d: "Pulls out key terms, renewal dates and obligations from your contracts and sends reminders before they're due.", aud: ["sme", "corp", "fo"] },
+  ]},
+  { id: "D", name: "Financial institutions", desc: "AI that does the reading and drafting for operations and credit teams, while your people make the decisions.", items: [
+    { t: "KYC / Onboarding Document Extraction", d: "Emirates ID, trade licence, MOA and bank statements turned into pre-filled onboarding forms for staff to verify.", aud: ["fi"] },
+    { t: "Trade Finance Document Checker", d: "Checks LCs, invoices, bills of lading and packing lists for discrepancies.", aud: ["fi"] },
+    { t: "Credit Memo Drafting Assistant", d: "Drafts a credit memo from the financials and the application for the analyst to review.", aud: ["fi"] },
+    { t: "Complaints & Service-request Triage", d: "Classifies requests, assigns SLAs and drafts responses in line with CBUAE consumer protection rules.", aud: ["fi"] },
+  ]},
+  { id: "E", name: "HNWIs & family offices", desc: "Less paperwork and a single view of everything you own.", items: [
+    { t: "Portfolio Consolidation & Reporting", d: "Statements from several banks and custodians combined into one monthly report.", aud: ["fo"] },
+    { t: "Family Office Admin Assistant", d: "A document vault plus tracking for bills and renewals (visas, licences, insurance, property) and approval workflows.", aud: ["fo"] },
+    { t: "Investment Memo Summariser", d: "Pitch decks, fund documents and term sheets summarised into a standard one-page memo.", aud: ["fo", "fi"] },
+  ]},
+  { id: "F", name: "Retailers", desc: "Better product content, smarter stock decisions and a clearer view of customer feedback.", items: [
+    { t: "Catalogue Enrichment", d: "Product titles, descriptions and attributes in Arabic and English for your store, Noon and Amazon.ae.", aud: ["retail"] },
+    { t: "Reorder & Stock Forecasting", d: "Flags slow-moving stock and suggests reorder quantities based on sales history.", aud: ["retail", "sme"] },
+    { t: "Review & Feedback Analysis", d: "Weekly themes from reviews, WhatsApp messages and complaints.", aud: ["retail"] },
+  ]},
+  { id: "G", name: "Financial operations & bank integration", desc: "We connect your accounting system to your bank and prepare payments and files. Your bank, or a licensed provider, moves the money.", items: [
+    { t: "Payroll & WPS Salary Processing", d: "From attendance and leave to payroll, WPS SIF file, payslips and accounting entries, with approval before anything is released.", aud: ["sme", "corp"],
+      steps: ["Attendance and leave", "Payroll: allowances, deductions, overtime, gratuity accruals", "WPS SIF file for your bank or exchange house", "Payslips by email or WhatsApp", "Posting to accounts"] },
+    { t: "Vendor Payments", d: "Approved bills turned into a payment run, a bulk bank file and remittance advices to suppliers.", aud: ["sme", "corp"],
+      steps: ["Payment run proposal (due dates, cash position, early-payment discounts)", "Bulk payment file in your bank's format, or via bank API", "Maker-checker approval in your bank portal", "Remittance advice to suppliers", "Bills marked paid automatically"] },
+    { t: "Bank Integration & Connectivity", d: "Connect your accounting system or ERP to your banks through APIs, host-to-host/SFTP or bulk files, for payments out, statements in and payment status updates.", aud: ["sme", "corp", "fo"] },
+    { t: "Bank Reconciliation", d: "Daily statements matched by AI to invoices, bills and payroll, with an exceptions queue for your team. This saves SME finance teams more time each day than anything else.", aud: ["sme", "corp", "fo"], hot: "Popular" },
+    { t: "Cash-flow Forecasting & Treasury View", d: "A 13-week cash forecast across all your banks, with alerts before a shortfall.", aud: ["sme", "corp", "fo"] },
+    { t: "Expense & Petty Cash", d: "Staff send receipts on WhatsApp. VAT details are extracted, expenses categorised and approved, and claims reimbursed in the next payment run.", aud: ["sme", "corp"] },
+    { t: "VAT & Corporate Tax Prep", d: "VAT return workings, input-tax checks and year-end schedules ready for corporate tax, prepared for your accountant or tax agent to file.", aud: ["sme", "fo"] },
+    { t: "Payment Links & Receipts", d: "Payment links sent with invoices through your payment gateway, with incoming payments matched and receipts issued.", aud: ["sme", "retail"] },
+    { t: "Open Banking & API Banking Enablement", d: "For SMEs: live balances across banks, automatic statement feeds and payments started from your ERP, delivered with licensed open finance partners. For banks and fintechs: API product strategy, use cases, developer portal content and partner onboarding.", aud: ["sme", "fi"] },
+  ]},
+];
+
+const SERVICE_GROUPS = [
+  { name: "Advisory & strategy", desc: "Work out where AI fits before you spend money on it.", items: [
+    { t: "AI Discovery & Readiness Assessment", d: "A one-week paid assessment that is credited against the build. You get a process map, quick wins and a roadmap.", feature: true },
+    { t: "Process & Workflow Streamlining", d: "We map how work flows today, define your system of record and decide which steps need automation and which need AI." },
+    { t: "AI Tool Selection Advisory", d: "An independent recommendation on which tools and vendors to buy, and which to avoid." },
+    { t: "Fractional Head of AI", d: "A few days a month of AI leadership for corporates and family offices without an in-house lead." },
+  ]},
+  { name: "Build & implementation", desc: "Fixed-price delivery, built on the systems you already use.", items: [
+    { t: "Implementation", d: "Zoho, CRM and ERP setup, n8n integrations and the AI layer, at a fixed price per pack." },
+    { t: "Data Cleanup & Migration", d: "Records moved from spreadsheets and email into a proper system of record, which most packs need first." },
+    { t: "Custom Agent & Assistant Builds", d: "One-off builds for use cases our standard packs don't cover." },
+    { t: "Personal AI Setup for Executives & HNWIs", d: "A private assistant, email and calendar workflows and document organisation, set up with privacy first." },
+  ]},
+  { name: "Run & support", desc: "We stay with you after go-live.", items: [
+    { t: "Managed AI Ops Retainer", d: "Monitoring, accuracy checks against your test set, prompt updates and new small workflows each month.", feature: true },
+    { t: "Finance-ops Managed Service", d: "We prepare your payroll, payment runs and bank reconciliation every month. You approve and release them in your bank." },
+  ]},
+  { name: "Training & governance", desc: "Help your people use AI well and safely.", items: [
+    { t: "AI Training & Workshops", d: "Leadership briefings, hands-on staff sessions with Claude, ChatGPT and Copilot, and practical prompting skills." },
+    { t: "AI Policy & Governance", d: "Acceptable-use policy, data handling under UAE PDPL and vendor risk, aligned with CBUAE for financial institutions." },
+  ]},
+  { name: "Banking & financial-services expertise", desc: "Deep digital-banking and CLM experience, available to SMEs, banks and fintechs.", items: [
+    { t: "SME Banking & Financing Advisory", d: "Get your business ready to approach banks. We help with preparation and advice and don't act as a broker.", feature: true,
+      list: ["Bank-ready financial pack (statements, management accounts, cash-flow forecast, aged receivables and payables)", "Credit facility readiness: working capital, overdraft, trade finance, invoice discounting", "Bank relationship support, facility renewals and covenant reporting", "Account and online-banking setup, approval matrices and user roles", "Financial health check with an improvement plan"] },
+    { t: "Implementation Consulting for Banks", d: "Delivery support for banks' own service and technology programmes.",
+      list: ["Digital banking launches and upgrades, including retail and SME onboarding", "AI use cases in banks, with model risk and CBUAE governance built in", "Open finance and API programmes", "Vendor selection and RFP support", "Product owner, BA, PMO and UAT lead roles", "Implementations for regulatory change"] },
+    { t: "Customer Lifecycle Management (CLM)", d: "End-to-end lifecycle journeys for banks and fintechs.",
+      list: ["CLM consulting and implementation: onboarding, KYC refresh, periodic reviews, exit", "AI-assisted CLM: document checks, review triage and case summaries", "CLM setup for newly licensed fintechs, aligned with CBUAE AML/CFT rules", "CLM platform selection and vendor RFPs", "CLM health check and remediation plan"] },
+    { t: "Bank Partnership Programme", d: "For banks' SME desks: offer our workflow packs to your business-banking clients. Your clients stay with you longer and run their finances better." },
+  ]},
+];
+
+// ---------- RENDER ----------
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function renderCatalog() {
+  const html = CATEGORIES.map(c => `
+    <div class="cat-block" data-cat="${c.id}">
+      <div class="cat-title"><span class="letter">${c.id}</span><h3 style="font-size:1.35rem;margin:0">${esc(c.name)}</h3></div>
+      <p class="cat-desc">${esc(c.desc)}</p>
+      <div class="cards">${c.items.map(p => `
+        <article class="card" data-aud="${p.aud.join(" ")}">
+          <h3>${esc(p.t)}</h3>
+          <p>${esc(p.d)}</p>
+          ${p.steps ? `<details class="steps"><summary>How it works</summary><ol>${p.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol></details>` : ""}
+          <div class="tags">${p.hot ? `<span class="tag-sm hot">${esc(p.hot)}</span>` : ""}${p.aud.map(a => `<span class="tag-sm">${AUD[a]}</span>`).join("")}</div>
+        </article>`).join("")}
+      </div>
+    </div>`).join("");
+  document.getElementById("catalog").innerHTML = html;
+}
+
+function renderFilters() {
+  const opts = [["all", "All packs"], ...CATEGORIES.map(c => ["cat:" + c.id, c.name]), ...Object.entries(AUD).map(([k, v]) => ["aud:" + k, "For " + v])];
+  const el = document.getElementById("filters");
+  el.innerHTML = opts.map(([k, v]) => `<button class="chip" data-f="${k}" aria-pressed="${k === "all"}">${esc(v)}</button>`).join("");
+  el.addEventListener("click", e => { const b = e.target.closest(".chip"); if (b) applyFilter(b.dataset.f); });
+}
+
+function applyFilter(f) {
+  document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.f === f));
+  document.querySelectorAll(".cat-block").forEach(block => {
+    let visible = 0;
+    block.querySelectorAll(".card").forEach(card => {
+      let show = true;
+      if (f.startsWith("cat:")) show = block.dataset.cat === f.slice(4);
+      if (f.startsWith("aud:")) show = card.dataset.aud.split(" ").includes(f.slice(4));
+      card.hidden = !show; if (show) visible++;
+    });
+    block.hidden = visible === 0;
+  });
+}
+
+function renderServices() {
+  document.getElementById("svc-groups").innerHTML = SERVICE_GROUPS.map(g => `
+    <div class="svc-group">
+      <h3 class="group">${esc(g.name)}</h3>
+      <p>${esc(g.desc)}</p>
+      <div class="svc-grid">${g.items.map(s => `
+        <div class="svc${s.feature ? " feature" : ""}">
+          <h3>${esc(s.t)}</h3>
+          <p>${esc(s.d)}</p>
+          ${s.list ? `<ul>${s.list.map(i => `<li>${esc(i)}</li>`).join("")}</ul>` : ""}
+        </div>`).join("")}
+      </div>
+    </div>`).join("");
+}
+
+function renderInterest() {
+  const sel = document.getElementById("interest");
+  const groups = [["Not sure yet", ["Help me figure it out"]],
+    ...CATEGORIES.map(c => ["Products: " + c.name, c.items.map(i => i.t)]),
+    ...SERVICE_GROUPS.map(g => ["Services: " + g.name, g.items.map(i => i.t)])];
+  sel.innerHTML = groups.map(([label, items]) => `<optgroup label="${esc(label)}">${items.map(i => `<option>${esc(i)}</option>`).join("")}</optgroup>`).join("");
+}
+
+document.querySelectorAll(".aud").forEach(b => b.addEventListener("click", () => {
+  applyFilter("aud:" + b.dataset.aud);
+  document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+}));
+
+document.querySelectorAll("#menu a").forEach(a => a.addEventListener("click", () => document.getElementById("menu").classList.remove("open")));
+
+document.getElementById("contact-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const subject = `Enquiry: ${f.get("interest")} (${f.get("company") || f.get("name")})`;
+  const body = `Name: ${f.get("name")}\nCompany: ${f.get("company")}\nEmail: ${f.get("email")}\nType: ${f.get("type")}\nInterested in: ${f.get("interest")}\n\n${f.get("message")}`;
+  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
+
+document.getElementById("yr").textContent = new Date().getFullYear();
+renderCatalog(); renderFilters(); renderServices(); renderInterest();
+</script>
+</body>
+</html>
