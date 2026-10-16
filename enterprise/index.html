@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Enabler Enterprise — Build, Modernize & Transform</title>
+<meta name="description" content="Enterprise technology partner for AI and intelligent automation, cloud and digital transformation, enterprise software and integration, and technology advisory and governance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a1020;
+    --ink-2: #364258;
+    --muted: #64708a;
+    --line: #e2e6ef;
+    --bg: #ffffff;
+    --bg-soft: #f5f7fb;
+    --night: #070c1a;
+    --night-2: #0e1630;
+    --blue: #2f6bff;
+    --blue-soft: #e8efff;
+    --violet: #7b5cff;
+    --cyan: #22c3e6;
+    --radius: 16px;
+    --shadow: 0 1px 2px rgba(10,16,32,.05), 0 12px 32px rgba(10,16,32,.08);
+    --max: 1200px;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 Manrope, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { font-family: Sora, Manrope, sans-serif; line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.02em; }
+  h1 { font-size: clamp(2.4rem, 5.6vw, 4.2rem); }
+  h2 { font-size: clamp(1.8rem, 3.6vw, 2.7rem); }
+  h3 { font-size: 1.15rem; letter-spacing: -.01em; }
+  p { margin: 0 0 1em; }
+  a { color: var(--blue); }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+  section { padding: 96px 0; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font: 700 .76rem/1 Manrope; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
+  .eyebrow::before { content: ""; width: 18px; height: 2px; background: currentColor; }
+  .lead { font-size: 1.15rem; color: var(--ink-2); max-width: 720px; }
+  .section-head { margin-bottom: 48px; }
+  .center { text-align: center; } .center .lead { margin-left: auto; margin-right: auto; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; border-radius: 10px; font-weight: 700; text-decoration: none; border: 1.5px solid transparent; cursor: pointer; font-size: .96rem; font-family: Manrope; transition: transform .15s, background .15s, box-shadow .15s; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: linear-gradient(135deg, var(--blue), var(--violet)); color: #fff; box-shadow: 0 8px 24px rgba(47,107,255,.35); }
+  .btn-ghost { border-color: rgba(255,255,255,.25); color: #fff; }
+  .btn-ghost:hover { background: rgba(255,255,255,.07); }
+  .btn-outline { border-color: var(--line); color: var(--ink); background: #fff; }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* Nav */
+  header.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .2s, border-color .2s; border-bottom: 1px solid transparent; }
+  header.nav.solid { background: rgba(7,12,26,.92); backdrop-filter: blur(12px); border-color: rgba(255,255,255,.08); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 20px; }
+  .logo { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font: 700 1.15rem Sora; white-space: nowrap; }
+  .logo small { font: 600 .68rem Manrope; letter-spacing: .14em; text-transform: uppercase; color: #8fa3d1; margin-left: 2px; }
+  .logo-mark { width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, var(--cyan), var(--blue) 50%, var(--violet)); display: grid; place-items: center; font-size: .78rem; }
+  .nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+  .nav ul a { white-space: nowrap; color: #c5d0ea; text-decoration: none; font-weight: 600; font-size: .92rem; }
+  .nav ul a:hover, .nav ul a.active { color: #fff; }
+  .nav .btn { padding: 10px 18px; font-size: .88rem; }
+  .menu-btn { display: none; background: none; border: 0; font-size: 1.5rem; color: #fff; cursor: pointer; }
+
+  /* Hero */
+  .hero { position: relative; background: var(--night); color: #fff; padding: 168px 0 110px; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: -20% -10% auto auto; width: 900px; height: 900px; background: radial-gradient(closest-side, rgba(123,92,255,.35), transparent 70%); }
+  .hero::after { content: ""; position: absolute; inset: auto auto -40% -15%; width: 900px; height: 900px; background: radial-gradient(closest-side, rgba(34,195,230,.22), transparent 70%); }
+  .grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse at 60% 30%, #000 30%, transparent 75%); }
+  .hero .wrap { position: relative; z-index: 1; }
+  .hero .eyebrow { color: var(--cyan); }
+  .hero h1 { max-width: 900px; }
+  .hero h1 .grad { background: linear-gradient(90deg, var(--cyan), #8fb0ff 45%, #b9a6ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .lead { color: #b8c4e0; font-size: 1.22rem; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+  .pillars-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 72px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); overflow: hidden; }
+  .pillars-strip a { background: rgba(14,22,48,.85); padding: 22px; color: #fff; text-decoration: none; transition: background .2s; }
+  .pillars-strip a:hover { background: rgba(30,44,90,.9); }
+  .pillars-strip .ic { font-size: 1.3rem; margin-bottom: 10px; display: block; }
+  .pillars-strip b { display: block; font-family: Sora; font-size: 1rem; margin-bottom: 4px; }
+  .pillars-strip span { color: #93a2c6; font-size: .86rem; line-height: 1.45; display: block; }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .values { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .value { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; background: #fff; }
+  .value .n { font: 700 .8rem Sora; color: var(--blue); margin-bottom: 8px; display: block; }
+  .value p { color: var(--muted); font-size: .93rem; margin: 0; }
+  .mission { background: var(--bg-soft); border-left: 3px solid var(--blue); padding: 18px 22px; border-radius: 0 12px 12px 0; margin-top: 24px; color: var(--ink-2); }
+
+  /* Services */
+  #services { background: var(--bg-soft); }
+  .svc-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .svc-tab { border: 1px solid var(--line); background: #fff; color: var(--ink-2); padding: 11px 18px; border-radius: 10px; font: 700 .92rem Manrope; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+  .svc-tab[aria-selected="true"] { background: var(--night); color: #fff; border-color: var(--night); }
+  .svc-panel { display: grid; grid-template-columns: .85fr 1.15fr; gap: 40px; background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 40px; box-shadow: var(--shadow); }
+  .svc-panel .big-ic { width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; font-size: 1.6rem; background: var(--blue-soft); margin-bottom: 18px; }
+  .svc-panel p { color: var(--ink-2); }
+  .svc-items { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .svc-item { border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+  .svc-item b { display: block; font-family: Sora; font-size: .98rem; margin-bottom: 4px; }
+  .svc-item span { color: var(--muted); font-size: .9rem; line-height: 1.5; display: block; }
+  .outcomes { list-style: none; padding: 0; margin: 18px 0 0; }
+  .outcomes li { padding: 6px 0 6px 26px; position: relative; color: var(--ink-2); font-size: .95rem; }
+  .outcomes li::before { content: "✓"; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+
+  /* Industries */
+  .ind-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .ind { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 18px; background: #fff; transition: border-color .2s, box-shadow .2s, transform .2s; }
+  .ind:hover { border-color: #c4d3ff; box-shadow: var(--shadow); transform: translateY(-2px); }
+  .ind .ic { font-size: 1.5rem; margin-bottom: 10px; display: block; }
+  .ind b { display: block; font-family: Sora; font-size: 1rem; margin-bottom: 6px; }
+  .ind span { color: var(--muted); font-size: .86rem; line-height: 1.5; display: block; }
+
+  /* Solutions */
+  #solutions { background: var(--night); color: #fff; position: relative; overflow: hidden; }
+  #solutions::before { content: ""; position: absolute; right: -200px; top: -200px; width: 700px; height: 700px; background: radial-gradient(closest-side, rgba(47,107,255,.25), transparent 70%); }
+  #solutions .wrap { position: relative; }
+  #solutions .eyebrow { color: var(--cyan); }
+  #solutions .lead { color: #b8c4e0; }
+  .sol-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .sol { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; }
+  .sol h3 { color: #fff; }
+  .sol p { color: #b0bcd9; font-size: .94rem; }
+  .sol .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+  .sol .stack span { font-size: .74rem; padding: 4px 10px; border-radius: 999px; background: rgba(34,195,230,.12); color: #8fe3f5; border: 1px solid rgba(34,195,230,.25); }
+  .sol .num { font: 700 .8rem Sora; color: #8fa3d1; margin-bottom: 14px; }
+
+  /* Approach */
+  .approach { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 56px; }
+  .ap { border-top: 2px solid rgba(255,255,255,.15); padding-top: 18px; }
+  .ap b { font-family: Sora; display: block; margin-bottom: 6px; }
+  .ap span { color: #9fb0d6; font-size: .9rem; display: block; }
+  .ap .k { font: 700 .78rem Sora; color: var(--cyan); display: block; margin-bottom: 8px; }
+
+  /* Case studies */
+  .cs-note { display: inline-block; font-size: .82rem; color: var(--muted); background: var(--bg-soft); border: 1px solid var(--line); padding: 6px 12px; border-radius: 8px; margin-bottom: 28px; }
+  .cs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .cs { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
+  .cs-top { padding: 22px 24px; color: #fff; min-height: 128px; display: flex; flex-direction: column; justify-content: space-between; }
+  .cs-top .ind-tag { font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+  .cs-top h3 { color: #fff; margin: 12px 0 0; }
+  .cs-body { padding: 22px 24px; flex: 1; }
+  .cs-body dt { font: 700 .74rem Manrope; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-top: 12px; }
+  .cs-body dt:first-child { margin-top: 0; }
+  .cs-body dd { margin: 4px 0 0; color: var(--ink-2); font-size: .93rem; }
+
+  /* Careers */
+  #careers { background: var(--bg-soft); }
+  .careers { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; }
+  .perks { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 12px; }
+  .perks li { display: flex; gap: 12px; color: var(--ink-2); }
+  .perks li b { color: var(--ink); }
+  .perks .ic { width: 34px; height: 34px; flex: none; border-radius: 9px; background: var(--blue-soft); display: grid; place-items: center; }
+  .roles { display: grid; gap: 12px; }
+  .role { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .role b { font-family: Sora; display: block; }
+  .role span { color: var(--muted); font-size: .88rem; }
+  .role button { flex: none; }
+
+  /* Contact */
+  .contact { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; }
+  .contact-card { background: var(--night); color: #fff; border-radius: 20px; padding: 36px; position: relative; overflow: hidden; }
+  .contact-card::before { content: ""; position: absolute; right: -120px; bottom: -120px; width: 360px; height: 360px; background: radial-gradient(closest-side, rgba(123,92,255,.4), transparent 70%); }
+  .contact-card > * { position: relative; }
+  .contact-card .eyebrow { color: var(--cyan); }
+  .contact-card p { color: #b8c4e0; }
+  .contact-card ul { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 14px; }
+  .contact-card li { display: flex; gap: 12px; color: #dbe3f5; }
+  form { display: grid; gap: 14px; }
+  label { font-weight: 700; font-size: .86rem; display: grid; gap: 6px; }
+  input, select, textarea { font: inherit; font-weight: 500; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); width: 100%; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--blue); outline-offset: 1px; border-color: transparent; }
+  textarea { min-height: 120px; resize: vertical; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .note { font-size: .86rem; color: var(--muted); margin: 0; }
+
+  footer { background: var(--night); color: #8fa3d1; padding: 56px 0 32px; font-size: .9rem; }
+  .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+  .foot h4 { color: #fff; font-size: .9rem; margin-bottom: 12px; }
+  .foot ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .foot a { color: #b8c4e0; text-decoration: none; }
+  .foot a:hover { color: #fff; }
+  .foot-bottom { border-top: 1px solid rgba(255,255,255,.08); margin-top: 40px; padding-top: 22px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  @media (max-width: 1180px) {
+    .nav ul { display: none; position: absolute; top: 72px; left: 0; right: 0; background: rgba(7,12,26,.98); flex-direction: column; gap: 0; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .nav ul.open { display: flex; }
+    .nav ul a { display: block; padding: 12px 20px; font-size: 1rem; }
+    .menu-btn { display: block; }
+    .nav .btn { display: none; }
+    header.nav { background: rgba(7,12,26,.92); }
+  }
+  @media (max-width: 1080px) {
+    .ind-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 980px) {
+    .about, .svc-panel, .careers, .contact { grid-template-columns: 1fr; }
+    .pillars-strip, .approach { grid-template-columns: 1fr 1fr; }
+    .sol-grid, .cs-grid { grid-template-columns: 1fr 1fr; }
+    .foot { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 680px) {
+    section { padding: 68px 0; }
+    .hero { padding: 128px 0 72px; }
+    .pillars-strip, .approach, .sol-grid, .cs-grid, .values, .svc-items, .row2, .foot { grid-template-columns: 1fr; }
+    .ind-grid { grid-template-columns: 1fr 1fr; }
+    .svc-panel { padding: 24px; }
+    .role { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#home" class="logo"><span class="logo-mark">AI</span>AI Enabler <small>Enterprise</small></a>
+    <nav>
+      <ul id="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#case-studies">Case Studies</a></li>
+        <li><a href="#careers">Careers</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="btn btn-primary">Talk to an expert</a>
+    <button class="menu-btn" aria-label="Open menu" id="menu-btn">☰</button>
+  </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section class="hero" id="home">
+  <div class="grid-bg"></div>
+  <div class="wrap">
+    <div class="eyebrow">Enterprise technology partner</div>
+    <h1>We Build, Modernize &amp; <span class="grad">Transform Enterprises.</span></h1>
+    <p class="lead">From AI-powered automation to cloud-native platforms, we help organizations unlock efficiency, scale innovation, and accelerate digital growth.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-primary">Start a conversation →</a>
+      <a href="#services" class="btn btn-ghost">Explore our services</a>
+    </div>
+    <div class="pillars-strip" id="pillars-strip"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <div class="eyebrow">About us</div>
+      <h2>A delivery partner for enterprises that need technology to work, not just to launch.</h2>
+      <p class="lead">We bring together AI, cloud, integration and governance expertise in one team. That means strategy, architecture and delivery are owned end to end instead of spread across separate vendors.</p>
+      <p>We work alongside your IT, operations and business teams to modernize core systems, automate high-volume processes and put AI into production safely. We start from measurable business outcomes and build on the platforms you already run.</p>
+      <div class="mission"><b>Our mission:</b> to help organizations adopt modern technology with confidence, delivered securely, governed properly and built to scale.</div>
+    </div>
+    <div class="values">
+      <div class="value"><span class="n">01</span><h3>Outcome-first</h3><p>Every engagement starts with the business result and the measures we'll use to prove it.</p></div>
+      <div class="value"><span class="n">02</span><h3>Secure by design</h3><p>Security, data protection and compliance are built in from day one, not added at the end.</p></div>
+      <div class="value"><span class="n">03</span><h3>Vendor-neutral</h3><p>We recommend what fits your architecture, and we oversee vendors on your behalf.</p></div>
+      <div class="value"><span class="n">04</span><h3>Built to last</h3><p>Documented, maintainable solutions with knowledge transfer, so your team can run what we deliver.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Services</div>
+      <h2>Four practices. One accountable partner.</h2>
+      <p class="lead">Engage a single practice or combine them into an end-to-end transformation programme.</p>
+    </div>
+    <div class="svc-tabs" role="tablist" id="svc-tabs"></div>
+    <div id="svc-panel"></div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow">Industries</div>
+      <h2>Built for regulated, complex, high-volume sectors</h2>
+      <p class="lead">We understand the systems, regulations and operating pressures in each sector we serve.</p>
+    </div>
+    <div class="ind-grid" id="ind-grid"></div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section id="solutions">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Solutions</div>
+      <h2>Proven solution patterns, ready to adapt</h2>
+      <p class="lead">Reusable blueprints that combine our practices to solve recurring enterprise problems faster and with less risk.</p>
+    </div>
+    <div class="sol-grid" id="sol-grid"></div>
+    <div class="approach">
+      <div class="ap"><span class="k">01 · Discover</span><b>Assess & align</b><span>Current-state review, priorities, business case and a roadmap.</span></div>
+      <div class="ap"><span class="k">02 · Design</span><b>Architect</b><span>Target architecture, security model, delivery plan and success measures.</span></div>
+      <div class="ap"><span class="k">03 · Deliver</span><b>Build & integrate</b><span>Agile delivery in short increments, with testing and DevOps throughout.</span></div>
+      <div class="ap"><span class="k">04 · Run</span><b>Operate & improve</b><span>Managed support, monitoring, optimization and knowledge transfer.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="case-studies">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Case studies</div>
+      <h2>How we approach real enterprise challenges</h2>
+      <p class="lead">Typical engagements across our practices, showing the problem, our approach and the outcomes we design for.</p>
+    </div>
+    <div class="cs-note">Illustrative engagement examples. Client case studies will be published with permission.</div>
+    <div class="cs-grid" id="cs-grid"></div>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section id="careers">
+  <div class="wrap careers">
+    <div>
+      <div class="eyebrow">Careers</div>
+      <h2>Build what's next with us</h2>
+      <p class="lead">We're growing a team of engineers, architects and delivery leaders who like hard problems and shipping real systems.</p>
+      <ul class="perks">
+        <li><span class="ic">🚀</span><div><b>Modern work.</b> AI, cloud-native and integration projects for major organizations.</div></li>
+        <li><span class="ic">📈</span><div><b>Room to grow.</b> Certifications, learning time and a clear path to lead.</div></li>
+        <li><span class="ic">🤝</span><div><b>Small, senior teams.</b> You work directly with clients and decision-makers.</div></li>
+        <li><span class="ic">🌍</span><div><b>Flexible.</b> Hybrid working across client sites and remote.</div></li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="margin-bottom:14px">Roles we hire for</h3>
+      <div class="roles" id="roles"></div>
+      <p class="note" style="margin-top:14px">Don't see your role? Send us your profile through the contact form and choose "Careers".</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap contact">
+    <div class="contact-card">
+      <div class="eyebrow">Contact</div>
+      <h2 style="color:#fff">Let's talk about your next transformation</h2>
+      <p>Tell us what you're trying to achieve. A senior consultant will get back to you to arrange a discovery call.</p>
+      <ul>
+        <li>✉️ <a id="contact-email-link" style="color:#dbe3f5"></a></li>
+        <li>📍 United Arab Emirates</li>
+        <li>🕘 Sunday–Friday, business hours (GST)</li>
+      </ul>
+    </div>
+    <form id="contact-form">
+      <div class="row2">
+        <label>Full name<input name="name" required autocomplete="name"></label>
+        <label>Organization<input name="company" autocomplete="organization"></label>
+      </div>
+      <div class="row2">
+        <label>Work email<input name="email" type="email" required autocomplete="email"></label>
+        <label>Mobile number<input name="mobile" type="tel" required autocomplete="tel" inputmode="tel" placeholder="+971 50 123 4567" pattern="[+0-9 ()-]{7,20}" title="Enter a phone number, e.g. +971 50 123 4567"></label>
+      </div>
+      <div class="row2">
+        <label>Industry<select name="industry" id="industry"></select></label>
+        <label>I'm interested in<select name="interest" id="interest"></select></label>
+      </div>
+      <label>How can we help?<textarea name="message" placeholder="Briefly describe your project, systems involved and timeline"></textarea></label>
+      <input type="hidden" name="site" value="Enterprise website">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <div><button class="btn btn-primary" type="submit" id="form-btn">Send enquiry</button></div>
+      <p class="note" id="form-status" role="status">We will reply by email or call you on the number you give.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#home" class="logo" style="margin-bottom:12px"><span class="logo-mark">AI</span>AI Enabler <small>Enterprise</small></a>
+        <p style="max-width:320px">Enterprise technology partner for AI, cloud, integration and technology governance.</p>
+      </div>
+      <div><h4>Services</h4><ul id="foot-services"></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#case-studies">Case Studies</a></li><li><a href="#careers">Careers</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Explore</h4><ul><li><a href="#industries">Industries</a></li><li><a href="#solutions">Solutions</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="yr"></span> AI Enabler. All rights reserved.</span><span>United Arab Emirates</span></div>
+  </div>
+</footer>
+
+<script>
+// ---------- CONTENT (edit here) ----------
+const CONTACT_EMAIL = "abdalhaseebzuae@gmail.com";
+const FORMSPREE_ID = "xeaevorb"; // https://formspree.io/f/xeaevorb. Empty = fall back to opening the visitor's email app
+
+const SERVICES = [
+  { id: "ai", ic: "🤖", name: "AI & Intelligent Automation", short: "AI agents, document processing and workflow automation.",
+    intro: "Move AI from pilots into production. We design, build and govern AI solutions that take on high-volume, document-heavy and repetitive work, with people kept in control.",
+    items: [
+      ["AI agents & copilots", "Task-focused agents for customer service, operations and internal teams, connected to your systems."],
+      ["Intelligent document processing", "Extract, classify and validate data from forms, invoices, contracts and IDs."],
+      ["OCR & data capture", "Turn scanned and handwritten documents into structured, searchable data."],
+      ["Workflow automation", "Automate end-to-end processes across systems, with approvals and audit trails."],
+      ["Enterprise AI integration", "Connect leading AI models securely to your ERP, CRM, data platforms and portals."],
+      ["Responsible AI & MLOps", "Evaluation, monitoring, guardrails and governance for AI in production."],
+    ],
+    outcomes: ["Shorter processing times", "Fewer manual errors", "Staff freed for higher-value work"] },
+  { id: "cloud", ic: "☁️", name: "Cloud & Digital Transformation", short: "Cloud migration, modernization, Azure, microservices and DevOps.",
+    intro: "Modernize your technology foundation. We migrate, re-architect and operate workloads in the cloud so you can release faster, scale on demand and reduce technical debt.",
+    items: [
+      ["Cloud migration", "Assessment, landing zones and phased migration of applications and data."],
+      ["Legacy modernization", "Re-platform or re-architect ageing systems without disrupting the business."],
+      ["Microsoft Azure solutions", "Azure architecture, app services, data, identity and cost optimization."],
+      ["Microservices & cloud-native", "Containerized, API-first architectures built for scale and resilience."],
+      ["DevOps & platform engineering", "CI/CD pipelines, infrastructure as code, observability and SRE practices."],
+      ["Cloud cost & governance", "FinOps, policies, tagging and guardrails to keep cloud spend under control."],
+    ],
+    outcomes: ["Faster, safer releases", "Lower infrastructure and maintenance cost", "Scalable, resilient platforms"] },
+  { id: "software", ic: "🧩", name: "Enterprise Software & Integration", short: "Custom applications, APIs, middleware, ERP and CRM integration.",
+    intro: "Connect your enterprise. We build custom applications and the integration layer that lets your ERP, CRM, legacy and cloud systems share data reliably.",
+    items: [
+      ["Custom enterprise applications", "Web and mobile applications designed around your processes."],
+      ["API design & management", "Secure, documented APIs with gateways, versioning and developer portals."],
+      ["Middleware & integration platforms", "Event-driven and message-based integration across your estate."],
+      ["ERP integration", "Connect SAP, Oracle, Microsoft Dynamics and others to the rest of your landscape."],
+      ["CRM integration", "Salesforce, Dynamics 365 and other CRMs integrated with operations and finance."],
+      ["Data integration", "Pipelines that feed reporting, analytics and AI with clean, trusted data."],
+    ],
+    outcomes: ["A single, consistent view of data", "Fewer manual hand-offs between systems", "Faster delivery of new digital services"] },
+  { id: "advisory", ic: "🧭", name: "Technology Advisory & Governance", short: "IT strategy, architecture, delivery management, cybersecurity and vendor oversight.",
+    intro: "Make confident technology decisions. We provide independent advice and hands-on governance so programmes deliver on time, on budget and securely.",
+    items: [
+      ["IT strategy & roadmaps", "Technology strategy aligned to business goals, with a prioritized roadmap."],
+      ["Architecture reviews", "Independent reviews of solution and enterprise architecture, with clear recommendations."],
+      ["Technology delivery management", "Programme and project leadership, PMO and delivery assurance."],
+      ["Cybersecurity governance", "Security policies, risk assessments and alignment with recognized frameworks."],
+      ["Vendor selection & oversight", "RFPs, evaluations, contract and SLA reviews, and ongoing vendor management."],
+      ["Digital transformation office", "Set up and run the governance that keeps a transformation on track."],
+    ],
+    outcomes: ["Clear, prioritized technology investment", "Lower delivery and vendor risk", "Stronger security posture"] },
+];
+
+const INDUSTRIES = [
+  ["🏛️", "Government", "Digital services for citizens, document automation and secure cloud adoption."],
+  ["🏥", "Healthcare", "Patient-record integration, claims processing and automated clinical administration."],
+  ["⚡", "Energy", "Asset data platforms, field-operations automation and reporting."],
+  ["🛢️", "Oil & Gas", "Engineering document processing, maintenance workflows and HSE reporting."],
+  ["🚚", "Logistics", "Shipment documents, tracking integration and warehouse automation."],
+  ["🏗️", "Construction", "Project controls, contract and drawing management, and subcontractor workflows."],
+  ["🏢", "Real Estate", "Lease and tenant management, property portals and CRM integration."],
+  ["🛍️", "Retail", "Omnichannel integration, demand insights and customer-service AI."],
+  ["🎓", "Education", "Student-lifecycle systems, admissions automation and learning platforms."],
+  ["🏦", "Financial Services", "Onboarding and KYC automation, core-system integration and regulatory reporting."],
+];
+
+const SOLUTIONS = [
+  ["Intelligent Document Hub", "Capture, classify and extract data from any document channel, then route it into your core systems for review and approval.", ["OCR", "AI extraction", "Workflow", "ERP/ECM"]],
+  ["Enterprise AI Assistant", "A secure assistant over your policies, knowledge and systems for employees or customers, with access controls and audit.", ["LLMs", "RAG", "SSO", "Guardrails"]],
+  ["Legacy-to-Cloud Modernization", "A phased path from on-premises legacy applications to cloud-native services, without a risky big-bang cut-over.", ["Azure", "Containers", "Microservices", "DevOps"]],
+  ["Integration & API Platform", "A central integration layer and API catalogue that connects ERP, CRM and line-of-business systems.", ["API gateway", "Middleware", "Events", "Monitoring"]],
+  ["Process Automation Center", "Identify, automate and monitor high-volume processes across departments from one governed platform.", ["Process mining", "Automation", "AI agents", "Dashboards"]],
+  ["Technology Governance Office", "A ready-to-run framework for architecture, delivery, security and vendor governance across your portfolio.", ["Architecture", "PMO", "Cybersecurity", "Vendor mgmt"]],
+];
+
+const CASES = [
+  { ind: "Government", color: "linear-gradient(135deg,#1d3fae,#2f6bff)", title: "Digitizing permit applications",
+    challenge: "Paper and PDF applications reviewed manually, creating long backlogs.",
+    approach: "Intelligent document processing to extract and validate applicant data, with a case-management workflow for officers.",
+    outcome: "Faster processing, fewer data-entry errors and a full audit trail." },
+  { ind: "Logistics", color: "linear-gradient(135deg,#0b7a8f,#22c3e6)", title: "Connecting operations to ERP",
+    challenge: "Shipment, warehouse and finance data held in separate systems and reconciled by hand.",
+    approach: "An API and integration layer linking the transport system, warehouse platform and ERP in near real time.",
+    outcome: "One source of truth for orders and invoicing, with less manual reconciliation." },
+  { ind: "Financial Services", color: "linear-gradient(135deg,#4b2bbf,#7b5cff)", title: "AI-assisted customer onboarding",
+    challenge: "Slow onboarding caused by manual checking of IDs, licences and statements.",
+    approach: "Document extraction and validation feeding pre-filled onboarding cases, with analysts reviewing exceptions.",
+    outcome: "Shorter onboarding times and more consistent compliance checks." },
+  { ind: "Healthcare", color: "linear-gradient(135deg,#0f7a5c,#2fbf8f)", title: "Modernizing a legacy patient system",
+    challenge: "An ageing on-premises application that was costly to maintain and hard to change.",
+    approach: "A phased re-architecture to Azure microservices, with CI/CD and monitoring.",
+    outcome: "Faster releases, better resilience and lower maintenance effort." },
+  { ind: "Construction", color: "linear-gradient(135deg,#b4560f,#f08a2c)", title: "Governing a multi-vendor programme",
+    challenge: "A digital programme with several vendors, slipping timelines and unclear accountability.",
+    approach: "Independent delivery management, an architecture review and vendor SLA oversight.",
+    outcome: "A reset plan, clear ownership and visible progress reporting to leadership." },
+  { ind: "Retail", color: "linear-gradient(135deg,#a3237a,#e0489f)", title: "Customer-service AI agent",
+    challenge: "High contact volumes for order status and returns across chat and email.",
+    approach: "An AI agent integrated with order and CRM systems, with smooth hand-off to human agents.",
+    outcome: "Faster responses, around the clock, with agents focused on complex cases." },
+];
+
+const ROLES = [
+  ["AI / ML Engineer", "LLMs, document AI, agents and evaluation"],
+  ["Cloud & DevOps Engineer", "Azure, Kubernetes, CI/CD and infrastructure as code"],
+  ["Integration Developer", "APIs, middleware, ERP and CRM integration"],
+  ["Solution Architect", "Enterprise and solution architecture across our practices"],
+  ["Technical Delivery Manager", "Programme delivery, governance and stakeholder management"],
+];
+
+// ---------- RENDER ----------
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+$("pillars-strip").innerHTML = SERVICES.map(s => `<a href="#services" data-svc="${s.id}"><span class="ic">${s.ic}</span><b>${esc(s.name)}</b><span>${esc(s.short)}</span></a>`).join("");
+
+function showService(id) {
+  const s = SERVICES.find(x => x.id === id);
+  document.querySelectorAll(".svc-tab").forEach(t => t.setAttribute("aria-selected", t.dataset.svc === id));
+  $("svc-panel").innerHTML = `
+    <div class="svc-panel" role="tabpanel">
+      <div>
+        <div class="big-ic">${s.ic}</div>
+        <h3 style="font-size:1.6rem">${esc(s.name)}</h3>
+        <p>${esc(s.intro)}</p>
+        <ul class="outcomes">${s.outcomes.map(o => `<li>${esc(o)}</li>`).join("")}</ul>
+        <a href="#contact" class="btn btn-outline" style="margin-top:20px" data-interest="${esc(s.name)}">Discuss ${esc(s.name.split(" & ")[0])} →</a>
+      </div>
+      <div class="svc-items">${s.items.map(([t, d]) => `<div class="svc-item"><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join("")}</div>
+    </div>`;
+}
+$("svc-tabs").innerHTML = SERVICES.map(s => `<button class="svc-tab" role="tab" data-svc="${s.id}">${s.ic} ${esc(s.name)}</button>`).join("");
+$("svc-tabs").addEventListener("click", e => { const b = e.target.closest(".svc-tab"); if (b) showService(b.dataset.svc); });
+$("pillars-strip").addEventListener("click", e => { const a = e.target.closest("[data-svc]"); if (a) showService(a.dataset.svc); });
+showService("ai");
+
+$("ind-grid").innerHTML = INDUSTRIES.map(([ic, n, d]) => `<div class="ind"><span class="ic">${ic}</span><b>${esc(n)}</b><span>${esc(d)}</span></div>`).join("");
+$("sol-grid").innerHTML = SOLUTIONS.map(([t, d, stack], i) => `<div class="sol"><div class="num">${String(i + 1).padStart(2, "0")}</div><h3>${esc(t)}</h3><p>${esc(d)}</p><div class="stack">${stack.map(x => `<span>${esc(x)}</span>`).join("")}</div></div>`).join("");
+$("cs-grid").innerHTML = CASES.map(c => `
+  <article class="cs">
+    <div class="cs-top" style="background:${c.color}"><span class="ind-tag">${esc(c.ind)}</span><h3>${esc(c.title)}</h3></div>
+    <dl class="cs-body"><dt>Challenge</dt><dd>${esc(c.challenge)}</dd><dt>Approach</dt><dd>${esc(c.approach)}</dd><dt>Outcome</dt><dd>${esc(c.outcome)}</dd></dl>
+  </article>`).join("");
+$("roles").innerHTML = ROLES.map(([t, d]) => `<div class="role"><div><b>${esc(t)}</b><span>${esc(d)}</span></div><button class="btn btn-outline" data-interest="Careers: ${esc(t)}">Register interest</button></div>`).join("");
+$("foot-services").innerHTML = SERVICES.map(s => `<li><a href="#services" data-svc="${s.id}">${esc(s.name)}</a></li>`).join("");
+$("foot-services").addEventListener("click", e => { const a = e.target.closest("[data-svc]"); if (a) showService(a.dataset.svc); });
+
+$("industry").innerHTML = ["Select…", ...INDUSTRIES.map(i => i[1]), "Other"].map(o => `<option>${esc(o)}</option>`).join("");
+$("interest").innerHTML = [...SERVICES.map(s => s.name), ...SOLUTIONS.map(s => "Solution: " + s[0]), ...ROLES.map(r => "Careers: " + r[0]), "Careers: Other role", "Something else"].map(o => `<option>${esc(o)}</option>`).join("");
+
+// Buttons that pre-select "I'm interested in" and jump to the form
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-interest]");
+  if (!b) return;
+  e.preventDefault();
+  $("interest").value = b.dataset.interest;
+  $("contact").scrollIntoView({ behavior: "smooth" });
+  setTimeout(() => $("contact-form").name.focus({ preventScroll: true }), 600);
+});
+
+$("contact-email-link").href = "mailto:" + CONTACT_EMAIL;
+$("contact-email-link").textContent = CONTACT_EMAIL;
+
+// Nav: solid background after scrolling, mobile menu, active section
+const nav = $("nav");
+const onScroll = () => nav.classList.toggle("solid", scrollY > 40);
+addEventListener("scroll", onScroll, { passive: true }); onScroll();
+$("menu-btn").addEventListener("click", () => $("menu").classList.toggle("open"));
+document.querySelectorAll("#menu a").forEach(a => a.addEventListener("click", () => $("menu").classList.remove("open")));
+const links = [...document.querySelectorAll("#menu a")];
+const io = new IntersectionObserver(entries => entries.forEach(en => {
+  if (en.isIntersecting) links.forEach(l => l.classList.toggle("active", l.getAttribute("href") === "#" + en.target.id));
+}), { rootMargin: "-45% 0px -50% 0px" });
+document.querySelectorAll("main section[id]").forEach(s => io.observe(s));
+</script>
+<script>
+// Contact form → Formspree (falls back to the visitor's email app if FORMSPREE_ID is empty)
+$("contact-form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const form = e.target, f = new FormData(form);
+  const subject = `Enterprise enquiry: ${f.get("interest")} (${f.get("company") || f.get("name")})`;
+  const status = $("form-status"), btn = $("form-btn");
+  if (!FORMSPREE_ID) {
+    const body = `Name: ${f.get("name")}\nOrganization: ${f.get("company")}\nEmail: ${f.get("email")}\nMobile: ${f.get("mobile")}\nIndustry: ${f.get("industry")}\nInterested in: ${f.get("interest")}\n\n${f.get("message")}`;
+    location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return;
+  }
+  f.append("_subject", subject);
+  btn.disabled = true; btn.textContent = "Sending…";
+  try {
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, { method: "POST", body: f, headers: { Accept: "application/json" } });
+    if (!res.ok) throw new Error(res.status);
+    form.reset();
+    status.textContent = "Thank you, your enquiry has been sent. We'll be in touch soon.";
+    status.style.color = "var(--blue)";
+  } catch {
+    status.innerHTML = `Sorry, that didn't go through. Please email us at <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`;
+    status.style.color = "#b42318";
+  } finally {
+    btn.disabled = false; btn.textContent = "Send enquiry";
+  }
+});
+$("yr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
